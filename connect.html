@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connect Sources | Silent Sentinel</title>
+
+  <style>
+    :root {
+      --bg: #080c12;
+      --panel: #111821;
+      --panel-soft: #151f2b;
+      --text: #f5f7f9;
+      --muted: #aeb9c5;
+      --quiet: #7f8b98;
+      --line: rgba(255, 255, 255, 0.09);
+      --line-soft: rgba(255, 255, 255, 0.055);
+      --blue: #8fc7ff;
+      --gold: #f2c879;
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
+      --radius-lg: 32px;
+      --radius-md: 24px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 50% 4%, rgba(143, 199, 255, 0.18), transparent 31%),
+        radial-gradient(circle at 50% 16%, rgba(242, 200, 121, 0.1), transparent 28%),
+        linear-gradient(180deg, #080c12 0%, #0d131b 58%, #070a0f 100%);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 56px));
+      margin: 0 auto;
+      padding: 34px 0 54px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 22px;
+      margin-bottom: 42px;
+    }
+
+    .logo-link {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .logo {
+      width: 160px;
+      height: auto;
+      display: block;
+      filter:
+        drop-shadow(0 18px 36px rgba(0, 0, 0, 0.42))
+        drop-shadow(0 0 34px rgba(143, 199, 255, 0.07));
+    }
+
+    .top-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .quiet-link,
+    .primary-action,
+    .secondary-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 20px;
+      border-radius: var(--radius-pill);
+      transition: transform 150ms ease, background 150ms ease, border-color 150ms ease;
+    }
+
+    .quiet-link,
+    .secondary-action {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+      color: rgba(245, 247, 249, 0.82);
+      font-size: 14px;
+    }
+
+    .primary-action {
+      background: var(--blue);
+      color: #06101a;
+      font-weight: 760;
+      border: 1px solid rgba(143, 199, 255, 0.45);
+    }
+
+    .quiet-link:hover,
+    .primary-action:hover,
+    .secondary-action:hover {
+      transform: translateY(-1px);
+    }
+
+    .quiet-link:hover,
+    .secondary-action:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.17);
+    }
+
+    .hero {
+      max-width: 920px;
+      margin-bottom: 36px;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      font-weight: 760;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(44px, 7vw, 76px);
+      line-height: 0.98;
+      letter-spacing: -0.07em;
+      font-weight: 780;
+    }
+
+    h1 span {
+      color: var(--blue);
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      margin: 26px 0 0;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.62;
+    }
+
+    .approval-panel {
+      padding: 30px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(143, 199, 255, 0.16);
+      background:
+        radial-gradient(circle at top right, rgba(143, 199, 255, 0.12), transparent 36%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.016)),
+        var(--panel);
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+
+    .approval-panel h2 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.08;
+      letter-spacing: -0.055em;
+    }
+
+    .approval-panel p {
+      margin: 15px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.58;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .card {
+      padding: 25px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.016)),
+        var(--panel-soft);
+      box-shadow: 0 20px 64px rgba(0, 0, 0, 0.22);
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.15;
+      letter-spacing: -0.045em;
+    }
+
+    .card p {
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.58;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 7px 12px;
+      margin-bottom: 18px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(143, 199, 255, 0.18);
+      background: rgba(143, 199, 255, 0.075);
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 680;
+    }
+
+    .do-dont {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .trust-card {
+      padding: 27px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(145deg, rgba(242, 200, 121, 0.06), rgba(255, 255, 255, 0.014)),
+        #111821;
+    }
+
+    .trust-card h3 {
+      margin: 0;
+      font-size: 23px;
+      letter-spacing: -0.045em;
+    }
+
+    .trust-card ul {
+      margin: 16px 0 0;
+      padding-left: 19px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.72;
+    }
+
+    .connect-panel {
+      margin-top: 22px;
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.016)),
+        var(--panel-soft);
+    }
+
+    .connect-panel h2 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: -0.055em;
+    }
+
+    .connect-panel p {
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.58;
+    }
+
+    .connect-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .disabled-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 20px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(255, 255, 255, 0.035);
+      color: var(--quiet);
+      cursor: not-allowed;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 34px;
+      color: var(--quiet);
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        width: min(100% - 34px, 760px);
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .top-actions {
+        justify-content: flex-start;
+      }
+
+      .grid,
+      .do-dont {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .page {
+        width: min(100% - 26px, 480px);
+        padding-top: 22px;
+      }
+
+      .logo {
+        width: 145px;
+      }
+
+      h1 {
+        font-size: 43px;
+      }
+
+      .hero-copy {
+        font-size: 17px;
+      }
+
+      .quiet-link,
+      .primary-action,
+      .secondary-action,
+      .disabled-button {
+        width: 100%;
+      }
+
+      .connect-actions,
+      .top-actions {
+        width: 100%;
+        flex-direction: column;
+      }
+
+      .approval-panel,
+      .card,
+      .trust-card,
+      .connect-panel {
+        padding: 24px;
+      }
+
+      .footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <header class="topbar">
+      <a class="logo-link" href="index.html" aria-label="Silent Sentinel home">
+        <img class="logo" src="silent-sentinel-logo.png" alt="Silent Sentinel" />
+      </a>
+
+      <div class="top-actions">
+        <a class="quiet-link" href="index.html">Back to landing page</a>
+        <a class="quiet-link" href="sentinel.html">View the Sentinel</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">Connect sources</p>
+      <h1>
+        Connect only what Silent Sentinel needs to watch.
+        <span>Keep control of everything else.</span>
+      </h1>
+
+      <p class="hero-copy">
+        Silent Sentinel is being built around read-only access. It watches for signals.
+        It does not act for you.
+      </p>
+    </section>
+
+    <section class="approval-panel">
+      <h2>Before any connection, the rules should be clear.</h2>
+      <p>
+        Silent Sentinel will use read-only access wherever possible, avoid raw archives,
+        and store only the signals needed to help you notice what matters.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="pill">Email</span>
+          <h3>Missed replies and quiet threads.</h3>
+          <p>
+            Watches for unanswered asks, follow-up gaps, cooling contact patterns, and threads that may need human attention.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="pill">Calendar</span>
+          <h3>Meetings, shifts, and gaps.</h3>
+          <p>
+            Watches for repeated cancellations, missing follow-ups after meetings, and dates that matter but have no next action.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="pill">Documents</span>
+          <h3>Deadlines hiding in files.</h3>
+          <p>
+            Watches for dates, commitments, changes, and terms that may be overlooked if they stay buried in documents.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="do-dont">
+      <article class="trust-card">
+        <h3>What Silent Sentinel may do</h3>
+        <ul>
+          <li>Read only what is needed to detect useful signals.</li>
+          <li>Create signal cards for overlooked information.</li>
+          <li>Show a plain source trail back to the user’s own tools.</li>
+          <li>Learn from acknowledge and dismiss actions.</li>
+        </ul>
+      </article>
+
+      <article class="trust-card">
+        <h3>What Silent Sentinel will not do</h3>
+        <ul>
+          <li>It will not send emails.</li>
+          <li>It will not delete, move, or edit anything.</li>
+          <li>It will not change meetings.</li>
+          <li>It will not approve work or make decisions for you.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="connect-panel">
+      <h2>Connection options</h2>
+      <p>
+        Real source connections will come after the Founder Watchlist LVP is tested.
+        The first version should start with read-only Google and Microsoft connections.
+      </p>
+
+      <div class="connect-actions">
+        <div class="disabled-button">Connect Google — coming next</div>
+        <div class="disabled-button">Connect Microsoft — coming next</div>
+        <a
+          class="primary-action"
+          href="mailto:david@moffett.co.nz?subject=Silent%20Sentinel%20source%20connection&body=Hi%20David%2C%0A%0AI%27d%20like%20to%20talk%20about%20connecting%20sources%20for%20Silent%20Sentinel.%0A%0AName%3A%0AOrganisation%3A%0AEmail%3A%0ASources%20I%20would%20want%20watched%3A%0A"
+        >
+          Discuss founder setup
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>Silent Sentinel · silentsentinel.watch</span>
+      <span>AI observes. Humans decide.</span>
+    </footer>
+  </main>
+</body>
+</html>
