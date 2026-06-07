@@ -7,22 +7,20 @@
 
   <style>
     :root {
-      --bg: #090d13;
+      --bg: #080c12;
       --panel: #111821;
       --panel-soft: #151f2b;
-      --panel-lift: #1a2633;
-      --text: #f3f6f8;
-      --muted: #aab6c2;
-      --quiet: #7f8c99;
-      --line: rgba(255, 255, 255, 0.08);
-      --line-soft: rgba(255, 255, 255, 0.05);
+      --text: #f5f7f9;
+      --muted: #aeb9c5;
+      --quiet: #7f8b98;
+      --line: rgba(255, 255, 255, 0.09);
+      --line-soft: rgba(255, 255, 255, 0.055);
       --blue: #8fc7ff;
       --gold: #f2c879;
-      --white-soft: rgba(255, 255, 255, 0.72);
-      --shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
-      --radius-lg: 30px;
-      --radius-md: 22px;
-      --radius-sm: 999px;
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
+      --radius-lg: 32px;
+      --radius-md: 24px;
+      --radius-pill: 999px;
     }
 
     * {
@@ -34,20 +32,26 @@
       min-height: 100vh;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(143, 199, 255, 0.12), transparent 34%),
-        radial-gradient(circle at top right, rgba(242, 200, 121, 0.08), transparent 30%),
-        linear-gradient(180deg, #090d13 0%, #0d131b 58%, #080b10 100%);
+        radial-gradient(circle at 18% 8%, rgba(143, 199, 255, 0.14), transparent 32%),
+        radial-gradient(circle at 84% 10%, rgba(242, 200, 121, 0.1), transparent 30%),
+        linear-gradient(180deg, #080c12 0%, #0d131b 58%, #070a0f 100%);
       color: var(--text);
     }
 
-    button {
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
       font: inherit;
     }
 
     .page {
-      width: min(1360px, calc(100% - 56px));
+      width: min(1180px, calc(100% - 56px));
       margin: 0 auto;
-      padding: 34px 0 54px;
+      padding: 32px 0 56px;
     }
 
     .topbar {
@@ -55,7 +59,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      margin-bottom: 46px;
+      margin-bottom: 82px;
     }
 
     .brand {
@@ -64,54 +68,152 @@
       gap: 16px;
     }
 
-    .mark {
-      width: 48px;
-      height: 48px;
-      border-radius: 18px;
-      background:
-        linear-gradient(145deg, rgba(143, 199, 255, 0.24), rgba(242, 200, 121, 0.14)),
-        #121a24;
+    .logo-image {
+      width: 158px;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 34px rgba(0, 0, 0, 0.34));
+    }
+
+    .brand-text {
+      display: none;
+    }
+
+    .top-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 11px 18px;
+      border-radius: var(--radius-pill);
       border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+      color: rgba(245, 247, 249, 0.82);
+      font-size: 14px;
+      transition: transform 150ms ease, background 150ms ease, border-color 150ms ease;
+    }
+
+    .top-link:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.17);
+    }
+
+    .hero {
       display: grid;
-      place-items: center;
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.28);
+      grid-template-columns: minmax(0, 1fr) 390px;
+      gap: 42px;
+      align-items: center;
+      margin-bottom: 74px;
     }
 
-    .mark-dot {
-      width: 13px;
-      height: 13px;
-      border-radius: 50%;
-      background: var(--blue);
-      box-shadow: 0 0 0 8px rgba(143, 199, 255, 0.09);
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      font-weight: 760;
     }
 
-    .brand h1 {
+    .hero h2 {
       margin: 0;
-      font-size: 22px;
-      line-height: 1.1;
+      max-width: 790px;
+      font-size: clamp(46px, 7vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -0.07em;
+      font-weight: 780;
+    }
+
+    .hero h2 span {
+      color: var(--blue);
+    }
+
+    .hero-copy {
+      max-width: 735px;
+      margin: 28px 0 0;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.62;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .primary-action,
+    .secondary-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 14px 20px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--line);
+      transition: transform 150ms ease, background 150ms ease, border-color 150ms ease;
+    }
+
+    .primary-action {
+      background: var(--blue);
+      color: #06101a;
+      font-weight: 760;
+      border-color: rgba(143, 199, 255, 0.45);
+    }
+
+    .secondary-action {
+      background: rgba(255, 255, 255, 0.045);
+      color: var(--text);
+    }
+
+    .primary-action:hover,
+    .secondary-action:hover {
+      transform: translateY(-1px);
+    }
+
+    .secondary-action:hover {
+      background: rgba(255, 255, 255, 0.075);
+      border-color: rgba(255, 255, 255, 0.17);
+    }
+
+    .watch-panel {
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.018)),
+        var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .watch-panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .watch-panel-title {
+      margin: 0;
+      font-size: 18px;
       letter-spacing: -0.03em;
       font-weight: 720;
     }
 
-    .brand p {
-      margin: 5px 0 0;
-      color: var(--quiet);
-      font-size: 14px;
-    }
-
-    .watching {
-      display: flex;
+    .watch-status {
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px 17px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
-      background: rgba(255, 255, 255, 0.035);
-      color: var(--white-soft);
-      font-size: 14px;
+      gap: 9px;
+      color: rgba(245, 247, 249, 0.74);
+      font-size: 13px;
+      white-space: nowrap;
     }
 
-    .watching-pulse {
+    .watch-dot {
       width: 9px;
       height: 9px;
       border-radius: 50%;
@@ -119,353 +221,187 @@
       box-shadow: 0 0 0 7px rgba(242, 200, 121, 0.1);
     }
 
-    .hero {
-      margin-bottom: 36px;
+    .mini-signal {
+      padding: 18px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-md);
+      background: rgba(0, 0, 0, 0.18);
+      margin-bottom: 14px;
     }
 
-    .eyebrow {
-      margin: 0 0 14px;
-      color: var(--gold);
-      font-size: 14px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 700;
+    .mini-signal:last-child {
+      margin-bottom: 0;
     }
 
-    .hero h2 {
-      margin: 0;
-      max-width: 860px;
-      font-size: clamp(42px, 6vw, 76px);
-      line-height: 0.98;
-      letter-spacing: -0.065em;
-      font-weight: 760;
-    }
-
-    .hero-copy {
-      max-width: 760px;
-      margin: 24px 0 0;
-      color: var(--muted);
-      font-size: 19px;
-      line-height: 1.62;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 360px;
-      gap: 26px;
-      align-items: start;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 22px;
-      margin-bottom: 18px;
-    }
-
-    .section-head h3 {
-      margin: 0;
-      font-size: 25px;
-      letter-spacing: -0.04em;
-      font-weight: 720;
-    }
-
-    .section-head p {
-      margin: 6px 0 0;
-      color: var(--quiet);
-      font-size: 15px;
-    }
-
-    .quiet-button {
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--text);
-      padding: 12px 16px;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: transform 150ms ease, background 150ms ease, border-color 150ms ease;
-      white-space: nowrap;
-    }
-
-    .quiet-button:hover {
-      transform: translateY(-1px);
-      background: rgba(255, 255, 255, 0.07);
-      border-color: rgba(255, 255, 255, 0.16);
-    }
-
-    .signals {
-      display: grid;
-      gap: 18px;
-    }
-
-    .signal-card {
-      position: relative;
-      overflow: hidden;
-      padding: 28px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
-        var(--panel);
-      box-shadow: var(--shadow);
-      transition:
-        opacity 180ms ease,
-        transform 180ms ease,
-        background 180ms ease,
-        border-color 180ms ease;
-    }
-
-    .signal-card::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 4px;
-      background: linear-gradient(180deg, var(--blue), rgba(242, 200, 121, 0.8));
-      opacity: 0.9;
-    }
-
-    .signal-card.is-acknowledged {
-      border-color: rgba(143, 199, 255, 0.2);
-      background:
-        linear-gradient(145deg, rgba(143, 199, 255, 0.07), rgba(255, 255, 255, 0.018)),
-        var(--panel);
-    }
-
-    .signal-card.is-dismissed {
-      opacity: 0.54;
-      border-color: rgba(255, 255, 255, 0.045);
-      background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.026), rgba(255, 255, 255, 0.01)),
-        #0f151d;
-    }
-
-    .signal-card.is-dismissed::before {
-      opacity: 0.25;
-    }
-
-    .signal-card.is-dismissed:hover {
-      opacity: 0.72;
-    }
-
-    .signal-topline {
+    .mini-pills {
       display: flex;
       flex-wrap: wrap;
-      gap: 9px;
-      margin-bottom: 20px;
-      padding-left: 4px;
+      gap: 8px;
+      margin-bottom: 13px;
     }
 
     .pill {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      min-height: 30px;
-      padding: 7px 12px;
-      border-radius: var(--radius-sm);
+      min-height: 28px;
+      padding: 7px 11px;
+      border-radius: var(--radius-pill);
       border: 1px solid rgba(255, 255, 255, 0.09);
       background: rgba(255, 255, 255, 0.055);
-      color: var(--white-soft);
-      font-size: 13px;
+      color: rgba(245, 247, 249, 0.76);
+      font-size: 12px;
       line-height: 1;
     }
 
-    .pill strong {
-      color: var(--text);
-      font-weight: 650;
-    }
-
-    .status-pill {
-      display: none;
-      border-color: rgba(242, 200, 121, 0.25);
-      background: rgba(242, 200, 121, 0.09);
-      color: var(--gold);
-    }
-
-    .signal-card.is-acknowledged .status-pill,
-    .signal-card.is-dismissed .status-pill {
-      display: inline-flex;
-    }
-
-    .signal-card.is-acknowledged .status-pill::after {
-      content: "Acknowledged";
-    }
-
-    .signal-card.is-dismissed .status-pill::after {
-      content: "Dismissed";
-    }
-
-    .pill-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--blue);
-    }
-
-    .pill-dot.gold {
-      background: var(--gold);
-    }
-
-    .signal-card h4 {
+    .mini-signal h3 {
       margin: 0;
-      font-size: 24px;
-      line-height: 1.18;
-      letter-spacing: -0.045em;
-      font-weight: 730;
+      font-size: 17px;
+      line-height: 1.25;
+      letter-spacing: -0.035em;
     }
 
-    .signal-card p {
-      margin: 15px 0 0;
+    .mini-signal p {
+      margin: 9px 0 0;
       color: var(--muted);
-      font-size: 16px;
-      line-height: 1.62;
-    }
-
-    .source-trail {
-      margin-top: 22px;
-      padding: 16px 18px;
-      border-radius: var(--radius-md);
-      background: rgba(0, 0, 0, 0.16);
-      border: 1px solid var(--line-soft);
-      color: var(--quiet);
       font-size: 14px;
       line-height: 1.5;
     }
 
-    .source-trail span {
-      color: var(--white-soft);
+    .section {
+      margin-bottom: 34px;
     }
 
-    .signal-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 22px;
+    .section-head {
+      margin-bottom: 18px;
     }
 
-    .action-primary,
-    .action-secondary,
-    .action-undo {
-      border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
-      padding: 12px 16px;
-      cursor: pointer;
-      transition: transform 150ms ease, background 150ms ease, border-color 150ms ease, opacity 150ms ease;
+    .section-head h3 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.1;
+      letter-spacing: -0.055em;
     }
 
-    .action-primary {
-      color: #071019;
-      background: var(--blue);
-      border-color: rgba(143, 199, 255, 0.42);
-      font-weight: 700;
+    .section-head p {
+      max-width: 720px;
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.58;
     }
 
-    .action-secondary,
-    .action-undo {
-      color: var(--text);
-      background: transparent;
-    }
-
-    .action-undo {
-      display: none;
-      border-color: rgba(242, 200, 121, 0.24);
-      color: var(--gold);
-    }
-
-    .signal-card.is-dismissed .action-undo {
-      display: inline-flex;
-    }
-
-    .action-primary:hover,
-    .action-secondary:hover,
-    .action-undo:hover {
-      transform: translateY(-1px);
-    }
-
-    .action-secondary:hover,
-    .action-undo:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.16);
-    }
-
-    .action-primary:disabled,
-    .action-secondary:disabled {
-      opacity: 0.66;
-      cursor: default;
-      transform: none;
-    }
-
-    .side {
+    .cards {
       display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
-      position: sticky;
-      top: 24px;
     }
 
-    .side-card {
-      padding: 24px;
-      border: 1px solid var(--line);
+    .card {
+      min-height: 230px;
+      padding: 25px;
       border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
       background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.018)),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.016)),
         var(--panel-soft);
-      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.24);
+      box-shadow: 0 20px 64px rgba(0, 0, 0, 0.22);
     }
 
-    .side-card h4 {
-      margin: 0 0 18px;
-      font-size: 18px;
-      letter-spacing: -0.03em;
-    }
-
-    .source-row,
-    .pattern-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 15px 0;
-      border-top: 1px solid var(--line-soft);
-    }
-
-    .source-row:first-of-type,
-    .pattern-row:first-of-type {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    .source-name,
-    .pattern-name {
-      color: var(--text);
-      font-size: 15px;
-      font-weight: 650;
-    }
-
-    .source-meta,
-    .pattern-meta {
-      color: var(--quiet);
+    .card-label {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 7px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(143, 199, 255, 0.18);
+      background: rgba(143, 199, 255, 0.075);
+      color: var(--blue);
       font-size: 13px;
-      margin-top: 4px;
-      line-height: 1.4;
+      font-weight: 680;
     }
 
-    .source-state {
-      color: var(--gold);
-      font-size: 13px;
-      white-space: nowrap;
+    .card h4 {
+      margin: 22px 0 0;
+      font-size: 22px;
+      line-height: 1.15;
+      letter-spacing: -0.045em;
     }
 
-    .sentinel-note {
+    .card p {
+      margin: 14px 0 0;
       color: var(--muted);
       font-size: 15px;
-      line-height: 1.58;
-      margin: 0;
+      line-height: 1.6;
     }
 
-    .footer-line {
-      margin-top: 40px;
+    .principle {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .principle-card {
+      padding: 27px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(145deg, rgba(242, 200, 121, 0.065), rgba(255, 255, 255, 0.015)),
+        #111821;
+    }
+
+    .principle-card h4 {
+      margin: 0;
+      font-size: 23px;
+      letter-spacing: -0.045em;
+    }
+
+    .principle-card p {
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.58;
+    }
+
+    .closing {
+      margin-top: 52px;
+      padding: 36px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at top left, rgba(143, 199, 255, 0.12), transparent 42%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.018)),
+        var(--panel);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .closing h3 {
+      margin: 0;
+      font-size: clamp(31px, 4vw, 50px);
+      line-height: 1.04;
+      letter-spacing: -0.065em;
+    }
+
+    .closing p {
+      max-width: 720px;
+      margin: 18px auto 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .closing .primary-action {
+      margin-top: 26px;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 34px;
       color: var(--quiet);
       font-size: 13px;
-      text-align: center;
     }
 
     @media (max-width: 980px) {
@@ -474,50 +410,77 @@
       }
 
       .topbar {
-        align-items: flex-start;
-        flex-direction: column;
-        margin-bottom: 36px;
+        margin-bottom: 52px;
       }
 
-      .layout {
+      .hero {
         grid-template-columns: 1fr;
       }
 
-      .side {
-        position: static;
+      .watch-panel {
+        max-width: 520px;
       }
 
-      .section-head {
-        align-items: flex-start;
-        flex-direction: column;
+      .cards,
+      .principle {
+        grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 580px) {
       .page {
         width: min(100% - 26px, 480px);
         padding-top: 22px;
       }
 
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .top-link {
+        width: 100%;
+      }
+
+      .logo-image {
+        width: 148px;
+      }
+
       .hero h2 {
-        font-size: 42px;
+        font-size: 43px;
       }
 
       .hero-copy {
         font-size: 17px;
       }
 
-      .signal-card {
-        padding: 23px;
+      .hero-actions {
+        flex-direction: column;
       }
 
-      .signal-card h4 {
-        font-size: 21px;
-      }
-
-      .watching {
+      .primary-action,
+      .secondary-action {
         width: 100%;
-        justify-content: center;
+      }
+
+      .watch-panel {
+        padding: 22px;
+      }
+
+      .watch-panel-top {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .card,
+      .principle-card,
+      .closing {
+        padding: 24px;
+      }
+
+      .footer {
+        flex-direction: column;
+        text-align: center;
       }
     }
   </style>
@@ -526,332 +489,153 @@
 <body>
   <main class="page">
     <header class="topbar">
-      <div class="brand">
-        <div class="mark" aria-hidden="true">
-          <div class="mark-dot"></div>
-        </div>
-        <div>
+      <a class="brand" href="landing.html" aria-label="Silent Sentinel home">
+        <img
+          class="logo-image"
+          src="silent-sentinel-logo.png"
+          alt="Silent Sentinel"
+        />
+
+        <div class="brand-text">
           <h1>Silent Sentinel</h1>
           <p>silentsentinel.watch</p>
         </div>
-      </div>
+      </a>
 
-      <div class="watching">
-        <span class="watching-pulse" aria-hidden="true"></span>
-        Watching quietly · last scan 4 min ago
-      </div>
+      <a class="top-link" href="sentinel.html">
+        View the Sentinel
+      </a>
     </header>
 
     <section class="hero">
-      <p class="eyebrow">Private signal layer</p>
-      <h2>Quiet signals before visible problems.</h2>
-      <p class="hero-copy">
-        Silent Sentinel watches across email, calendar, and documents for patterns worth noticing.
-        It does not act, send, move, or decide. It surfaces the signal. Humans stay in charge.
-      </p>
-    </section>
-
-    <section class="layout">
       <div>
-        <div class="section-head">
-          <div>
-            <h3>Today’s Signals</h3>
-            <p>Few signals. Clear reasons. No noise.</p>
-          </div>
+        <p class="eyebrow">Business signal protection</p>
 
-          <button class="quiet-button" type="button" id="newSignalButton">
-            Simulate new signal
-          </button>
-        </div>
+        <h2>
+          Antivirus protects your device.
+          <span>Silent Sentinel watches for the business information people overlook.</span>
+        </h2>
 
-        <div class="signals" id="signals">
-          <article class="signal-card">
-            <div class="signal-topline">
-              <span class="pill"><span class="pill-dot"></span>Email</span>
-              <span class="pill">Relationship</span>
-              <span class="pill"><strong>11 days quiet</strong></span>
-              <span class="pill">Confidence: strong</span>
-              <span class="pill status-pill"></span>
-            </div>
+        <p class="hero-copy">
+          Missed follow-ups. Cooling relationships. Hidden deadlines. Patterns scattered across email,
+          calendar, and documents. Silent Sentinel watches quietly and brings the useful signals back to you.
+        </p>
 
-            <h4>Client silence may need attention.</h4>
-            <p>
-              You met with North Harbour Advisory three weeks ago. There has been no reply for 11 days,
-              and the follow-up document has not been opened since last Tuesday.
-            </p>
+        <div class="hero-actions">
+          <a class="primary-action" href="sentinel.html">
+            View the Sentinel
+          </a>
 
-            <div class="source-trail">
-              Source trail: <span>1 calendar meeting</span> · <span>4 email threads</span> · <span>1 shared document</span>
-            </div>
-
-            <div class="signal-actions">
-              <button class="action-primary" type="button" data-action="acknowledge">Acknowledge</button>
-              <button class="action-secondary" type="button" data-action="dismiss">Dismiss</button>
-              <button class="action-undo" type="button" data-action="undo">Undo</button>
-            </div>
-          </article>
-
-          <article class="signal-card">
-            <div class="signal-topline">
-              <span class="pill"><span class="pill-dot gold"></span>Calendar</span>
-              <span class="pill">Pattern</span>
-              <span class="pill"><strong>2 cancellations</strong></span>
-              <span class="pill">Confidence: rising</span>
-              <span class="pill status-pill"></span>
-            </div>
-
-            <h4>Repeated cancellations are forming a pattern.</h4>
-            <p>
-              Two people linked to the same proposal cancelled meetings within 24 hours. Neither cancellation
-              included a replacement time, and the proposal deadline is now five business days away.
-            </p>
-
-            <div class="source-trail">
-              Source trail: <span>2 calendar changes</span> · <span>1 proposal document</span> · <span>3 related emails</span>
-            </div>
-
-            <div class="signal-actions">
-              <button class="action-primary" type="button" data-action="acknowledge">Acknowledge</button>
-              <button class="action-secondary" type="button" data-action="dismiss">Dismiss</button>
-              <button class="action-undo" type="button" data-action="undo">Undo</button>
-            </div>
-          </article>
-
-          <article class="signal-card">
-            <div class="signal-topline">
-              <span class="pill"><span class="pill-dot"></span>Documents</span>
-              <span class="pill">Deadline</span>
-              <span class="pill"><strong>No calendar match</strong></span>
-              <span class="pill">Confidence: quiet</span>
-              <span class="pill status-pill"></span>
-            </div>
-
-            <h4>A document deadline has no matching movement.</h4>
-            <p>
-              The draft agreement mentions a response date this Friday, but there is no matching calendar event,
-              reminder, or recent email movement around that date.
-            </p>
-
-            <div class="source-trail">
-              Source trail: <span>1 document date</span> · <span>0 calendar matches</span> · <span>no recent replies</span>
-            </div>
-
-            <div class="signal-actions">
-              <button class="action-primary" type="button" data-action="acknowledge">Acknowledge</button>
-              <button class="action-secondary" type="button" data-action="dismiss">Dismiss</button>
-              <button class="action-undo" type="button" data-action="undo">Undo</button>
-            </div>
-          </article>
+          <a class="secondary-action" href="#how-it-works">
+            See what it watches
+          </a>
         </div>
       </div>
 
-      <aside class="side" aria-label="Sentinel context">
-        <section class="side-card">
-          <h4>Sources</h4>
+      <aside class="watch-panel" aria-label="Silent Sentinel sample signal panel">
+        <div class="watch-panel-top">
+          <p class="watch-panel-title">Today’s Signals</p>
+          <div class="watch-status">
+            <span class="watch-dot" aria-hidden="true"></span>
+            Watching quietly
+          </div>
+        </div>
 
-          <div class="source-row">
-            <div>
-              <div class="source-name">Email</div>
-              <div class="source-meta">412 threads watched</div>
-            </div>
-            <div class="source-state">Active</div>
+        <article class="mini-signal">
+          <div class="mini-pills">
+            <span class="pill">Email</span>
+            <span class="pill">Relationship</span>
+            <span class="pill">11 days quiet</span>
           </div>
 
-          <div class="source-row">
-            <div>
-              <div class="source-name">Calendar</div>
-              <div class="source-meta">28 events watched</div>
-            </div>
-            <div class="source-state">Active</div>
-          </div>
-
-          <div class="source-row">
-            <div>
-              <div class="source-name">Documents</div>
-              <div class="source-meta">94 files watched</div>
-            </div>
-            <div class="source-state">Active</div>
-          </div>
-        </section>
-
-        <section class="side-card">
-          <h4>Patterns Learned</h4>
-
-          <div class="pattern-row">
-            <div>
-              <div class="pattern-name">Client silence</div>
-              <div class="pattern-meta">Long gaps after meetings</div>
-            </div>
-          </div>
-
-          <div class="pattern-row">
-            <div>
-              <div class="pattern-name">Deadline drift</div>
-              <div class="pattern-meta">Dates without matching action</div>
-            </div>
-          </div>
-
-          <div class="pattern-row">
-            <div>
-              <div class="pattern-name">Relationship cooling</div>
-              <div class="pattern-meta">Slower replies and cancelled meetings</div>
-            </div>
-          </div>
-        </section>
-
-        <section class="side-card">
-          <h4>Sentinel Rule</h4>
-          <p class="sentinel-note">
-            Silent Sentinel does not send, reschedule, delete, approve, or decide.
-            It watches quietly and brings useful signals back to the human.
+          <h3>Client silence may need attention.</h3>
+          <p>
+            A key contact has not replied since the meeting follow-up. No next step is visible.
           </p>
-        </section>
+        </article>
+
+        <article class="mini-signal">
+          <div class="mini-pills">
+            <span class="pill">Calendar</span>
+            <span class="pill">Pattern</span>
+            <span class="pill">2 cancellations</span>
+          </div>
+
+          <h3>Repeated cancellations are forming a pattern.</h3>
+          <p>
+            Two linked meetings moved without replacement times. The proposal deadline is close.
+          </p>
+        </article>
       </aside>
     </section>
 
-    <div class="footer-line">
-      AI observes. Humans decide.
-    </div>
+    <section class="section" id="how-it-works">
+      <div class="section-head">
+        <h3>It watches the gaps people miss.</h3>
+        <p>
+          Ordinary tools show email, calendar, and documents separately. Silent Sentinel looks for the
+          quiet business signals that sit between them.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <span class="card-label">Follow-ups</span>
+          <h4>When important replies go quiet.</h4>
+          <p>
+            Silent Sentinel can surface gaps after meetings, unanswered asks, and client threads that may need attention.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="card-label">Relationships</span>
+          <h4>When patterns start to change.</h4>
+          <p>
+            Slower replies, repeated cancellations, and cooling contact patterns can be noticed before they become obvious.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="card-label">Deadlines</span>
+          <h4>When dates hide in documents.</h4>
+          <p>
+            A deadline in a file is easy to miss if it never becomes a calendar event, reminder, or active follow-up.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="principle" aria-label="Silent Sentinel principles">
+      <article class="principle-card">
+        <h4>It observes. It does not take over.</h4>
+        <p>
+          Silent Sentinel does not send messages, move meetings, approve work, delete anything, or make decisions for you.
+        </p>
+      </article>
+
+      <article class="principle-card">
+        <h4>Humans stay in charge.</h4>
+        <p>
+          The system surfaces a signal. You decide whether to acknowledge it, dismiss it, or act on it.
+        </p>
+      </article>
+    </section>
+
+    <section class="closing">
+      <h3>Quiet signals before visible problems.</h3>
+      <p>
+        Silent Sentinel is a calm watch layer for people, teams, and organisations who cannot afford to miss what matters.
+      </p>
+
+      <a class="primary-action" href="sentinel.html">
+        View the Sentinel
+      </a>
+    </section>
+
+    <footer class="footer">
+      <span>Silent Sentinel · silentsentinel.watch</span>
+      <span>AI observes. Humans decide.</span>
+    </footer>
   </main>
-
-  <script>
-    const signals = document.getElementById("signals");
-    const newSignalButton = document.getElementById("newSignalButton");
-
-    const extraSignals = [
-      {
-        source: "Email",
-        dot: "blue",
-        type: "Follow-up",
-        measure: "2 unanswered asks",
-        confidence: "Confidence: strong",
-        title: "A repeated request may be slipping.",
-        body: "A client has asked twice for the same update. There is no sent reply after the second request, and the next meeting is tomorrow morning.",
-        trail: "Source trail: 2 email asks · 1 calendar meeting · no matching sent reply"
-      },
-      {
-        source: "Calendar",
-        dot: "gold",
-        type: "Relationship",
-        measure: "Meeting moved twice",
-        confidence: "Confidence: rising",
-        title: "A key relationship may be cooling.",
-        body: "The same contact has moved two meetings in eight days. Email replies have also slowed compared with the previous month.",
-        trail: "Source trail: 2 calendar changes · 6 email threads · slower reply pattern"
-      },
-      {
-        source: "Documents",
-        dot: "blue",
-        type: "Risk",
-        measure: "Terms changed",
-        confidence: "Confidence: quiet",
-        title: "A document change may need human review.",
-        body: "The latest agreement draft contains new timing language. No related email mentions the change, and there is no calendar reminder attached.",
-        trail: "Source trail: 1 document change · no email mention · no calendar reminder"
-      }
-    ];
-
-    let nextSignalIndex = 0;
-
-    function createSignalCard(signal) {
-      const card = document.createElement("article");
-      card.className = "signal-card";
-
-      const dotClass = signal.dot === "gold" ? "pill-dot gold" : "pill-dot";
-
-      card.innerHTML = `
-        <div class="signal-topline">
-          <span class="pill"><span class="${dotClass}"></span>${signal.source}</span>
-          <span class="pill">${signal.type}</span>
-          <span class="pill"><strong>${signal.measure}</strong></span>
-          <span class="pill">${signal.confidence}</span>
-          <span class="pill status-pill"></span>
-        </div>
-
-        <h4>${signal.title}</h4>
-        <p>${signal.body}</p>
-
-        <div class="source-trail">
-          ${signal.trail}
-        </div>
-
-        <div class="signal-actions">
-          <button class="action-primary" type="button" data-action="acknowledge">Acknowledge</button>
-          <button class="action-secondary" type="button" data-action="dismiss">Dismiss</button>
-          <button class="action-undo" type="button" data-action="undo">Undo</button>
-        </div>
-      `;
-
-      return card;
-    }
-
-    function setSignalState(card, state) {
-      const acknowledgeButton = card.querySelector('[data-action="acknowledge"]');
-      const dismissButton = card.querySelector('[data-action="dismiss"]');
-
-      card.classList.remove("is-acknowledged", "is-dismissed");
-
-      acknowledgeButton.disabled = false;
-      dismissButton.disabled = false;
-      acknowledgeButton.textContent = "Acknowledge";
-      dismissButton.textContent = "Dismiss";
-
-      if (state === "acknowledged") {
-        card.classList.add("is-acknowledged");
-        acknowledgeButton.textContent = "Acknowledged";
-        acknowledgeButton.disabled = true;
-        return;
-      }
-
-      if (state === "dismissed") {
-        card.classList.add("is-dismissed");
-        dismissButton.textContent = "Dismissed";
-        dismissButton.disabled = true;
-      }
-    }
-
-    newSignalButton.addEventListener("click", () => {
-      const signal = extraSignals[nextSignalIndex];
-      const card = createSignalCard(signal);
-
-      signals.prepend(card);
-
-      nextSignalIndex += 1;
-
-      if (nextSignalIndex >= extraSignals.length) {
-        nextSignalIndex = 0;
-      }
-    });
-
-    signals.addEventListener("click", (event) => {
-      const button = event.target.closest("button");
-
-      if (!button) {
-        return;
-      }
-
-      const card = button.closest(".signal-card");
-
-      if (!card) {
-        return;
-      }
-
-      const action = button.dataset.action;
-
-      if (action === "acknowledge") {
-        setSignalState(card, "acknowledged");
-        return;
-      }
-
-      if (action === "dismiss") {
-        setSignalState(card, "dismissed");
-        return;
-      }
-
-      if (action === "undo") {
-        setSignalState(card, "active");
-      }
-    });
-  </script>
 </body>
 </html>
