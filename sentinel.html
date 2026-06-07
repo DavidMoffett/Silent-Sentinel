@@ -10,7 +10,6 @@
       --bg: #090d13;
       --panel: #111821;
       --panel-soft: #151f2b;
-      --panel-lift: #1a2633;
       --text: #f3f6f8;
       --muted: #aab6c2;
       --quiet: #7f8c99;
@@ -77,17 +76,6 @@
       filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.34));
     }
 
-    .brand-copy {
-      display: grid;
-      gap: 5px;
-    }
-
-    .brand-copy p {
-      margin: 0;
-      color: var(--quiet);
-      font-size: 14px;
-    }
-
     .muted-links {
       display: flex;
       align-items: center;
@@ -110,13 +98,6 @@
 
     .muted-links span {
       color: rgba(255, 255, 255, 0.22);
-    }
-
-    .home-link {
-      color: var(--white-soft);
-      font-size: 13px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-      width: fit-content;
     }
 
     .watching {
@@ -557,18 +538,16 @@
           alt="Silent Sentinel"
         />
 
-        <div class="brand-copy">
-          <nav class="muted-links" aria-label="Sentinel navigation">
-            <a href="index.html">Back to landing page</a>
-            <span>·</span>
-            <a href="connect.html">How connection works</a>
-          </nav>
-        </div>
+        <nav class="muted-links" aria-label="Sentinel navigation">
+          <a href="index.html">Back to landing page</a>
+          <span>·</span>
+          <a href="connect.html">How connection works</a>
+        </nav>
       </div>
 
       <div class="watching">
         <span class="watching-pulse" aria-hidden="true"></span>
-        Watching quietly Â· last scan 4 min ago
+        Watching quietly · last scan 4 min ago
       </div>
     </header>
 
@@ -585,7 +564,7 @@
       <div>
         <div class="section-head">
           <div>
-            <h3>Todayâ€™s Signals</h3>
+            <h3>Today’s Signals</h3>
             <p>Few signals. Clear reasons. No noise.</p>
           </div>
 
@@ -611,7 +590,7 @@
             </p>
 
             <div class="source-trail">
-              Source trail: <span>1 calendar meeting</span> Â· <span>4 email threads</span> Â· <span>1 shared document</span>
+              Source trail: <span>1 calendar meeting</span> · <span>4 email threads</span> · <span>1 shared document</span>
             </div>
 
             <div class="signal-actions">
@@ -637,7 +616,7 @@
             </p>
 
             <div class="source-trail">
-              Source trail: <span>2 calendar changes</span> Â· <span>1 proposal document</span> Â· <span>3 related emails</span>
+              Source trail: <span>2 calendar changes</span> · <span>1 proposal document</span> · <span>3 related emails</span>
             </div>
 
             <div class="signal-actions">
@@ -663,7 +642,7 @@
             </p>
 
             <div class="source-trail">
-              Source trail: <span>1 document date</span> Â· <span>0 calendar matches</span> Â· <span>no recent replies</span>
+              Source trail: <span>1 document date</span> · <span>0 calendar matches</span> · <span>no recent replies</span>
             </div>
 
             <div class="signal-actions">
@@ -757,7 +736,7 @@
         confidence: "Confidence: strong",
         title: "A repeated request may be slipping.",
         body: "A client has asked twice for the same update. There is no sent reply after the second request, and the next meeting is tomorrow morning.",
-        trail: "Source trail: 2 email asks Â· 1 calendar meeting Â· no matching sent reply"
+        trail: "Source trail: 2 email asks · 1 calendar meeting · no matching sent reply"
       },
       {
         source: "Calendar",
@@ -767,7 +746,7 @@
         confidence: "Confidence: rising",
         title: "A key relationship may be cooling.",
         body: "The same contact has moved two meetings in eight days. Email replies have also slowed compared with the previous month.",
-        trail: "Source trail: 2 calendar changes Â· 6 email threads Â· slower reply pattern"
+        trail: "Source trail: 2 calendar changes · 6 email threads · slower reply pattern"
       },
       {
         source: "Documents",
@@ -777,7 +756,7 @@
         confidence: "Confidence: quiet",
         title: "A document change may need human review.",
         body: "The latest agreement draft contains new timing language. No related email mentions the change, and there is no calendar reminder attached.",
-        trail: "Source trail: 1 document change Â· no email mention Â· no calendar reminder"
+        trail: "Source trail: 1 document change · no email mention · no calendar reminder"
       }
     ];
 
@@ -885,5 +864,3 @@
   </script>
 </body>
 </html>
-
-
