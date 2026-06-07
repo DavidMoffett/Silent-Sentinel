@@ -45,41 +45,46 @@
       text-decoration: none;
     }
 
-    button,
-    a {
-      font: inherit;
-    }
-
     .page {
       width: min(1180px, calc(100% - 56px));
       margin: 0 auto;
-      padding: 32px 0 56px;
+      padding: 34px 0 54px;
     }
 
     .topbar {
       display: flex;
-      align-items: center;
       justify-content: flex-end;
-      gap: 24px;
-      margin-bottom: 42px;
+      margin-bottom: 34px;
     }
 
-    .top-link {
+    .top-link,
+    .primary-action,
+    .secondary-action {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 44px;
-      padding: 11px 18px;
+      min-height: 48px;
+      padding: 13px 20px;
       border-radius: var(--radius-pill);
+      transition: transform 150ms ease, background 150ms ease, border-color 150ms ease;
+    }
+
+    .top-link,
+    .secondary-action {
       border: 1px solid var(--line);
       background: rgba(255, 255, 255, 0.04);
       color: rgba(245, 247, 249, 0.82);
       font-size: 14px;
-      transition: transform 150ms ease, background 150ms ease, border-color 150ms ease;
     }
 
-    .top-link:hover {
+    .top-link:hover,
+    .primary-action:hover,
+    .secondary-action:hover {
       transform: translateY(-1px);
+    }
+
+    .top-link:hover,
+    .secondary-action:hover {
       background: rgba(255, 255, 255, 0.07);
       border-color: rgba(255, 255, 255, 0.17);
     }
@@ -105,16 +110,7 @@
       grid-template-columns: minmax(0, 1fr) 390px;
       gap: 42px;
       align-items: center;
-      margin-bottom: 74px;
-    }
-
-    .eyebrow {
-      margin: 0 0 18px;
-      color: var(--gold);
-      font-size: 14px;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      font-weight: 760;
+      margin-bottom: 64px;
     }
 
     .hero h2 {
@@ -145,38 +141,11 @@
       margin-top: 34px;
     }
 
-    .primary-action,
-    .secondary-action {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 50px;
-      padding: 14px 20px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--line);
-      transition: transform 150ms ease, background 150ms ease, border-color 150ms ease;
-    }
-
     .primary-action {
       background: var(--blue);
       color: #06101a;
       font-weight: 760;
-      border-color: rgba(143, 199, 255, 0.45);
-    }
-
-    .secondary-action {
-      background: rgba(255, 255, 255, 0.045);
-      color: var(--text);
-    }
-
-    .primary-action:hover,
-    .secondary-action:hover {
-      transform: translateY(-1px);
-    }
-
-    .secondary-action:hover {
-      background: rgba(255, 255, 255, 0.075);
-      border-color: rgba(255, 255, 255, 0.17);
+      border: 1px solid rgba(143, 199, 255, 0.45);
     }
 
     .watch-panel {
@@ -268,7 +237,7 @@
     }
 
     .section {
-      margin-bottom: 34px;
+      margin-bottom: 30px;
     }
 
     .section-head {
@@ -297,7 +266,7 @@
     }
 
     .card {
-      min-height: 230px;
+      min-height: 210px;
       padding: 25px;
       border-radius: var(--radius-lg);
       border: 1px solid var(--line);
@@ -334,65 +303,124 @@
       line-height: 1.6;
     }
 
-    .principle {
+    .trust-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 18px;
       margin-top: 18px;
     }
 
-    .principle-card {
+    .trust-card {
       padding: 27px;
       border-radius: var(--radius-lg);
       border: 1px solid var(--line);
       background:
-        linear-gradient(145deg, rgba(242, 200, 121, 0.065), rgba(255, 255, 255, 0.015)),
+        linear-gradient(145deg, rgba(242, 200, 121, 0.06), rgba(255, 255, 255, 0.014)),
         #111821;
     }
 
-    .principle-card h4 {
+    .trust-card h4 {
       margin: 0;
       font-size: 23px;
       letter-spacing: -0.045em;
     }
 
-    .principle-card p {
+    .trust-card p {
       margin: 13px 0 0;
       color: var(--muted);
       font-size: 16px;
       line-height: 1.58;
     }
 
-    .closing {
-      margin-top: 52px;
-      padding: 36px;
+    .pricing {
+      margin-top: 18px;
+      padding: 28px;
       border-radius: var(--radius-lg);
-      border: 1px solid var(--line);
+      border: 1px solid rgba(143, 199, 255, 0.16);
       background:
-        radial-gradient(circle at top left, rgba(143, 199, 255, 0.12), transparent 42%),
-        linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.018)),
+        radial-gradient(circle at top right, rgba(143, 199, 255, 0.12), transparent 36%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.016)),
         var(--panel);
       box-shadow: var(--shadow);
-      text-align: center;
     }
 
-    .closing h3 {
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .pricing h3 {
       margin: 0;
-      font-size: clamp(31px, 4vw, 50px);
+      font-size: clamp(30px, 4vw, 48px);
       line-height: 1.04;
-      letter-spacing: -0.065em;
+      letter-spacing: -0.06em;
     }
 
-    .closing p {
-      max-width: 720px;
-      margin: 18px auto 0;
+    .pricing p {
+      margin: 15px 0 0;
       color: var(--muted);
-      font-size: 18px;
-      line-height: 1.6;
+      font-size: 17px;
+      line-height: 1.58;
     }
 
-    .closing .primary-action {
-      margin-top: 26px;
+    .price-card {
+      padding: 24px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      background: rgba(0, 0, 0, 0.18);
+    }
+
+    .price-label {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 7px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(242, 200, 121, 0.1);
+      border: 1px solid rgba(242, 200, 121, 0.2);
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 720;
+    }
+
+    .price {
+      margin: 18px 0 0;
+      font-size: 46px;
+      line-height: 1;
+      letter-spacing: -0.06em;
+      font-weight: 780;
+    }
+
+    .price span {
+      color: var(--quiet);
+      font-size: 17px;
+      letter-spacing: -0.02em;
+      font-weight: 500;
+    }
+
+    .price-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .price-after {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line-soft);
+      color: var(--quiet);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .signup-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 22px;
     }
 
     .footer {
@@ -409,11 +437,8 @@
         width: min(100% - 34px, 760px);
       }
 
-      .topbar {
-        margin-bottom: 34px;
-      }
-
-      .hero {
+      .hero,
+      .pricing-grid {
         grid-template-columns: 1fr;
       }
 
@@ -422,7 +447,7 @@
       }
 
       .cards,
-      .principle {
+      .trust-row {
         grid-template-columns: 1fr;
       }
     }
@@ -437,7 +462,9 @@
         justify-content: stretch;
       }
 
-      .top-link {
+      .top-link,
+      .primary-action,
+      .secondary-action {
         width: 100%;
       }
 
@@ -453,13 +480,9 @@
         font-size: 17px;
       }
 
-      .hero-actions {
+      .hero-actions,
+      .signup-actions {
         flex-direction: column;
-      }
-
-      .primary-action,
-      .secondary-action {
-        width: 100%;
       }
 
       .watch-panel {
@@ -472,8 +495,9 @@
       }
 
       .card,
-      .principle-card,
-      .closing {
+      .trust-card,
+      .pricing,
+      .price-card {
         padding: 24px;
       }
 
@@ -503,11 +527,9 @@
 
     <section class="hero">
       <div>
-        <p class="eyebrow">Business signal protection</p>
-
         <h2>
           Antivirus protects your device.
-          <span>Silent Sentinel watches for the business information people overlook.</span>
+          <span>Silent Sentinel watches for the crucial information people overlook.</span>
         </h2>
 
         <p class="hero-copy">
@@ -518,10 +540,6 @@
         <div class="hero-actions">
           <a class="primary-action" href="sentinel.html">
             View the Sentinel
-          </a>
-
-          <a class="secondary-action" href="#how-it-works">
-            See what it watches
           </a>
         </div>
       </div>
@@ -563,12 +581,11 @@
       </aside>
     </section>
 
-    <section class="section" id="how-it-works">
+    <section class="section">
       <div class="section-head">
         <h3>It watches the gaps people miss.</h3>
         <p>
-          Ordinary tools show email, calendar, and documents separately. Silent Sentinel looks for the
-          quiet business signals that sit between them.
+          Silent Sentinel looks for quiet signals that sit between email, calendar, and documents.
         </p>
       </div>
 
@@ -577,7 +594,7 @@
           <span class="card-label">Follow-ups</span>
           <h4>When important replies go quiet.</h4>
           <p>
-            Silent Sentinel can surface gaps after meetings, unanswered asks, and client threads that may need attention.
+            Gaps after meetings, unanswered asks, and client threads that may need attention.
           </p>
         </article>
 
@@ -585,7 +602,7 @@
           <span class="card-label">Relationships</span>
           <h4>When patterns start to change.</h4>
           <p>
-            Slower replies, repeated cancellations, and cooling contact patterns can be noticed before they become obvious.
+            Slower replies, repeated cancellations, and cooling contact patterns before they become obvious.
           </p>
         </article>
 
@@ -593,37 +610,65 @@
           <span class="card-label">Deadlines</span>
           <h4>When dates hide in documents.</h4>
           <p>
-            A deadline in a file is easy to miss if it never becomes a calendar event, reminder, or active follow-up.
+            A deadline in a file is easy to miss if it never becomes a calendar event, reminder, or follow-up.
           </p>
         </article>
       </div>
-    </section>
 
-    <section class="principle" aria-label="Silent Sentinel principles">
-      <article class="principle-card">
-        <h4>It observes. It does not take over.</h4>
-        <p>
-          Silent Sentinel does not send messages, move meetings, approve work, delete anything, or make decisions for you.
-        </p>
-      </article>
+      <div class="trust-row">
+        <article class="trust-card">
+          <h4>It observes. It does not take over.</h4>
+          <p>
+            Silent Sentinel does not send messages, move meetings, approve work, delete anything, or make decisions for you.
+          </p>
+        </article>
 
-      <article class="principle-card">
-        <h4>Humans stay in charge.</h4>
-        <p>
-          The system surfaces a signal. You decide whether to acknowledge it, dismiss it, or act on it.
-        </p>
-      </article>
-    </section>
+        <article class="trust-card">
+          <h4>Built to notice signals, not collect your working life.</h4>
+          <p>
+            Silent Sentinel should use minimal access, avoid raw archives, and keep humans in control.
+          </p>
+        </article>
+      </div>
 
-    <section class="closing">
-      <h3>Quiet signals before visible problems.</h3>
-      <p>
-        Silent Sentinel is a calm watch layer for people, teams, and organisations who cannot afford to miss what matters.
-      </p>
+      <section class="pricing" aria-label="Silent Sentinel founder pricing">
+        <div class="pricing-grid">
+          <div>
+            <h3>Founder Watchlist</h3>
+            <p>
+              Silent Sentinel is opening as a limited LVP trial for people, teams, and organisations
+              who want overlooked information surfaced before it becomes a visible problem.
+            </p>
+            <p>
+              The first 50 founder places help shape the product while it stays honest, restrained, and human-led.
+            </p>
 
-      <a class="primary-action" href="sentinel.html">
-        View the Sentinel
-      </a>
+            <div class="signup-actions">
+              <a
+                class="primary-action"
+                href="mailto:david@moffett.co.nz?subject=Silent%20Sentinel%20Founder%20Watchlist&body=Hi%20David%2C%0A%0AI%27d%20like%20to%20join%20the%20Silent%20Sentinel%20Founder%20Watchlist.%0A%0AName%3A%0AOrganisation%3A%0AEmail%3A%0AWhat%20I%20cannot%20afford%20to%20miss%3A%0A"
+              >
+                Request founder place
+              </a>
+
+              <a class="secondary-action" href="sentinel.html">
+                View the Sentinel
+              </a>
+            </div>
+          </div>
+
+          <aside class="price-card">
+            <span class="price-label">First 50 only</span>
+            <div class="price">$49<span>/month</span></div>
+            <div class="price-note">
+              Founder price for Year 1 while the watch layer is shaped with early users.
+            </div>
+            <div class="price-after">
+              Standard pricing expected after founder places: $99–$149/month, depending on final access and signal depth.
+            </div>
+          </aside>
+        </div>
+      </section>
     </section>
 
     <footer class="footer">
